@@ -57,5 +57,10 @@ sudo yarn set version stable
 
 git clone git@github.com:0xPolygonHermez/zkevm-node.git
 cd zkevm-node/
+make build-docker
 cd test/
 make run
+
+# deployment test
+# ends with an error which appears to be deliberate
+make deploy-sc
