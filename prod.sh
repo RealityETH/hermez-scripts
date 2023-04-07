@@ -1,4 +1,5 @@
-ZKEVM_NET=mainnet
+#ZKEVM_NET=mainnet
+ZKEVM_NET=testnet
 ZKEVM_DIR=/var/lib/hermez # CHANGE THIS
 ZKEVM_CONFIG_DIR=./etc/hermez# CHANGE THIS
 

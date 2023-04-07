@@ -58,6 +58,19 @@ sudo corepack prepare yarn@stable --activate
 sudo yarn set version stable
 
 
+
+# For production version
+
+sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo apt-get update
+sudo apt-get install ethereum
+
+
+
+
+# Test version
+
+
 git clone git@github.com:0xPolygonHermez/zkevm-node.git
 cd zkevm-node/
 make build-docker
