@@ -1,0 +1,20 @@
+2023-04-07
+
+Started the setup and tried sending funds
+
+Edited contracts deploy test script to send funds to metamask address at 0x93aE36E02B15733E7b73895fAe2F5e26F8Acb3B0
+
+Ran ssh forwarding script, added networks settings to metamask for test l1 and l2
+
+Can see funds at
+curl -H "Content-Type: application/json" -X POST --data '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x93aE36E02B15733E7b73895fAe2F5e26F8Acb3B0", "latest"],"id":1}' 127.0.0.1:8123
+...and also in Metamask
+
+Tried stopping and restarting
+make stop
+make restart
+
+...this appears to clear out the previous state and start again (although metamask continues to show the balance)
+
+
+
