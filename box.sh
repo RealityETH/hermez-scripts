@@ -65,7 +65,9 @@ sudo add-apt-repository -y ppa:ethereum/ethereum
 sudo apt-get update
 sudo apt-get install ethereum
 
-
+geth --dev --http --http.api eth,web3,net
+cd hermez-scripts
+sudo bash prod.sh
 
 
 # Test version
