@@ -1,13 +1,17 @@
+#!/bin/bash -x
+
 #ZKEVM_NET=mainnet
 ZKEVM_NET=testnet
-ZKEVM_DIR=/var/lib/hermez # CHANGE THIS
-ZKEVM_CONFIG_DIR=/etc/hermez# CHANGE THIS
+ZKEVM_DIR=/var/lib/hermez
+ZKEVM_CONFIG_DIR=/etc/hermez
 
 mkdir -p $ZKEVM_CONFIG_DIR
 mkdir -p $ZKEVM_DIR
 mkdir -p "$ZKEVM_DIR/$ZKEVM_NET"
 mkdir -p "$ZKEVM_DIR/data"
 
+
+exit
 # Make sure nothing conflicts
 docker container prune
 
