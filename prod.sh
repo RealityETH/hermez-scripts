@@ -10,10 +10,8 @@ mkdir -p $ZKEVM_DIR
 mkdir -p "$ZKEVM_DIR/$ZKEVM_NET"
 mkdir -p "$ZKEVM_DIR/data"
 
-
-exit
 # Make sure nothing conflicts
-docker container prune
+docker container prune -f
 
 curl -L https://github.com/0xPolygonHermez/zkevm-node/releases/latest/download/$ZKEVM_NET.zip > $ZKEVM_NET.zip && unzip -o $ZKEVM_NET.zip -d $ZKEVM_DIR && rm $ZKEVM_NET.zip
 cp ./hermez.env $ZKEVM_CONFIG_DIR/.env
