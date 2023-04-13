@@ -69,6 +69,9 @@ geth --dev --http --http.api eth,web3,net
 cd hermez-scripts
 sudo bash prod.sh
 
+# To see what's happening
+docker-compose logs -f
+
 
 # Test version
 
