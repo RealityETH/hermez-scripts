@@ -67,10 +67,7 @@ sudo apt-get install ethereum
 
 geth --dev --http --http.api eth,web3,net
 cd hermez-scripts
-sudo bash -
-
-# NB This needs to be run as root or we get postgres errors
-./prod.sh
+sudo ./prod.sh
 
 # To see what's happening
 cd /var/lib/hermez/testnet
