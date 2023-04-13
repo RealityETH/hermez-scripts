@@ -69,6 +69,10 @@ geth --dev --http --http.api eth,web3,net
 cd hermez-scripts
 sudo ./prod.sh
 
+# Not currently working
+# NEXT STEP: Try doing a manual setup of postgresql with appropriate users since it's not connecting correctly to the docker one
+
+
 # To see what's happening
 cd /var/lib/hermez/testnet
 docker-compose logs -f
