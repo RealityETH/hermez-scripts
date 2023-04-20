@@ -1,0 +1,22 @@
+geth \
+      --vmodule "rpc=5" \
+      "--http" \
+      "--http.api" \
+      "admin,eth,debug,miner,net,txpool,personal,web3" \
+      "--http.addr" \
+      "0.0.0.0" \
+      "--http.corsdomain" \
+      "*" \
+      "--http.vhosts" \
+      "*" \
+      "--ws" \
+      "--ws.origins" \
+      "*" \
+      "--ws.addr" \
+      "0.0.0.0" \
+      "--dev" \
+      "--datadir" \
+      "/var/lib/hermez/geth/data" \
+      "--syncmode" \
+      "full" \
+      "--rpc.allow-unprotected-txs" \
