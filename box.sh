@@ -11,7 +11,7 @@ git config --global user.name "Edmund Edgar"
 
 
 # install various common packages used for docker and other stuff
-sudo apt install apt-transport-https ca-certificates curl software-properties-common make unzip gcc
+sudo apt install apt-transport-https ca-certificates curl software-properties-common make unzip gcc net-tools
 sudo update-alternatives --set editor /usr/bin/vim.basic
 
 
