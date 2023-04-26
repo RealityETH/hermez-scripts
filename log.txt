@@ -18,3 +18,48 @@ make restart
 
 
 
+
+
+Need to find where it gets
+zkevm-mock-l1-network (hermeznetwork/geth-zkevm-contracts:v1.1.0-fork.4)
+
+Should come from
+Place to find this seems to be 
+https://github.com/0xPolygonHermez/zkevm-contracts/issues/107
+
+https://github.com/0xPolygonHermez/zkevm-contracts
+
+
+
+
+
+
+# Different setup for docker and default
+diff docker/scripts/deploy_parameters_docker.json deployment/deploy_parameters.json
+# Check:
+# - which of these if any is expected by the test scripts
+# - If we do our own deploy, are these all the same or different
+#
+
+
+Check how HARDHAT_NETWORK works. Do we need to define it, does hardhat define it automatically or what?
+
+The genesis creation script relies on hardhat imitating a sender. Does it work without doing that? Probably does, this seems like just a shortcut
+
+
+What happens if we deploy the deployer twice? Probably can only happen once, the second time should be an invalid transaction (?) because of the way the keyless deploy works
+
+
+Why doesn't 
+npx hardhat run deployment/2_deployPolygonZKEVMDeployer.js --network localhost
+seem to do anything?
+
+# Some issue involving the solidity downloader which is giving up while trying to download and copy a file.
+# Worked around it with 
+# NB May need to create that directory
+wget https://binaries.soliditylang.org/linux-amd64/list.json
+cp list.json /home/ed/.cache/hardhat-nodejs/compilers-v2/linux-amd64/list.json
+
+
+
+
