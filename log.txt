@@ -1,4 +1,4 @@
-2023-04-07
+2023-04-07 and later
 
 Started the setup and tried sending funds
 
@@ -17,44 +17,14 @@ make restart
 ...this appears to clear out the previous state and start again (although metamask continues to show the balance)
 
 
+Got contracts repo 
+git@github.com:0xPolygonHermez/zkevm-contracts.git
 
 
-
-Need to find where it gets
-zkevm-mock-l1-network (hermeznetwork/geth-zkevm-contracts:v1.1.0-fork.4)
-
-Should come from
-Place to find this seems to be 
-https://github.com/0xPolygonHermez/zkevm-contracts/issues/107
-
-https://github.com/0xPolygonHermez/zkevm-contracts
-
-
-
-
-
-
-# Different setup for docker and default
-diff docker/scripts/deploy_parameters_docker.json deployment/deploy_parameters.json
-# Check:
-# - which of these if any is expected by the test scripts
-# - If we do our own deploy, are these all the same or different
-#
-
-
-Check how HARDHAT_NETWORK works. Do we need to define it, does hardhat define it automatically or what?
-
-The genesis creation script relies on hardhat imitating a sender. Does it work without doing that? Probably does, this seems like just a shortcut
-
-
-What happens if we deploy the deployer twice? Probably can only happen once, the second time should be an invalid transaction (?) because of the way the keyless deploy works
-
-
-Why doesn't 
-npx hardhat run deployment/2_deployPolygonZKEVMDeployer.js --network localhost
-seem to do anything?
-
-# Some issue involving the solidity downloader which is giving up while trying to download and copy a file.
+# Issue with contract deployments:
+# eg npx hardhat run deployment/2_deployPolygonZKEVMDeployer.js --network localhost
+# fail silently after trying to downloading compiler
+# This is some issue involving the solidity downloader which is giving up while trying to download and copy a file.
 # Worked around it with 
 # NB May need to create that directory
 wget https://binaries.soliditylang.org/linux-amd64/list.json
@@ -62,4 +32,36 @@ cp list.json /home/ed/.cache/hardhat-nodejs/compilers-v2/linux-amd64/list.json
 
 
 
+Broke geth out to our own version
+Start it with our ./geth.sh
+We can reset it with ./geth_purge.sh (just deletes data directories
+
+Made a copy of zkevm-node/test to zkevm-node/ed to tinker with
+Removed the line in the Makefile that called geth 
+Ran amok with the docker-compose.yml removing anything that didn't look essential and replacing the docker :8545 connections with the docker ip address, 172.17.0.1
+
+Created an imitation of the docker image in our local geth by following the steps found in 
+docker/scripts/deploy-docker.sh
+
+However this errors out when run because the test prover uses fork 4 so we need to change that in deployment/genesis.json
+(This is probably the meaning of the branch name the image came from: zkevm-mock-l1-network hermeznetwork/geth-zkevm-contracts:v1.1.0-fork.4)
+
+The script didn't seem to output the block number of the genesis block (ie where it mines polygonZkEVMContract)
+Got this by connecting to our geth ( geth attach http://localhost:8545 ) and running things like
+> web3.eth.getCode("0x610178dA211FEF7D417bC0e6FeD39F05609AD788", 32)
+
+Other addresses should be as output by the deployment script, but check them against the output from the deploy script.
+Updated parameters in the following files, not sure if all were needed:
+ed/config/debug.node.config.toml 
+ed/config/test.genesis.config.json 
+ed/config/test.node.config.toml 
+See myconfig.diff for specific differences
+
+
+Seems to run ok like this
+Ran the contract deployment test and it appeared to go
+
+
+
+What happens if we deploy the deployer twice? Probably can only happen once, the second time should be an invalid transaction (?) because of the way the keyless deploy works
 
