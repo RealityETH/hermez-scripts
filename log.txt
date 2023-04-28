@@ -49,6 +49,7 @@ However this errors out when run because the test prover uses fork 4 so we need 
 The script didn't seem to output the block number of the genesis block (ie where it mines polygonZkEVMContract)
 Got this by connecting to our geth ( geth attach http://localhost:8545 ) and running things like
 > web3.eth.getCode("0x610178dA211FEF7D417bC0e6FeD39F05609AD788", 32)
+---> it should be in deployment/genesis_parameters.json, try that next time
 
 Other addresses should be as output by the deployment script, but check them against the output from the deploy script.
 Updated parameters in the following files, not sure if all were needed:
