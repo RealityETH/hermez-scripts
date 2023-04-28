@@ -62,6 +62,8 @@ Seems to run ok like this
 Ran the contract deployment test and it appeared to go
 
 
+Backed up geth state to geth-deployed
+
 
 What happens if we deploy the deployer twice? Probably can only happen once, the second time should be an invalid transaction (?) because of the way the keyless deploy works
 
