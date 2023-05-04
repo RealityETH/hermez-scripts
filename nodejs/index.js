@@ -15,9 +15,24 @@ const zkevm_addr = deploy_output.polygonZkEVMAddress;
 const provider = new ethers.providers.JsonRpcProvider('http://localhost:8545');
 const zkinst = new ethers.Contract(zkevm_addr, zkevm_abi, provider);
 
-doQuery(zkinst);
+const dbcfg = {
+	'database': 'state_db'
+	,'port': 5432
+	,'host': 'localhost'
+	,'user': 'state_user'
+	,'password': 'state_password'
+}
 
-async function doQuery(inst) {
+doQueries(zkinst, dbcfg);
+
+async function doQueries(inst, dbcfg) {
+	console.log('Doing query against PolygonZkEVM contract at ', zkevm_addr);
+	await doContractQuery(inst);
+	console.log('Doing query against state database');
+	await doDBQuery(dbcfg);
+}
+
+async function doContractQuery(inst) {
 
     //mapping(uint64 => bytes32) public forcedBatches;
     //mapping(uint64 => SequencedBatchData) public sequencedBatches;
@@ -61,6 +76,26 @@ async function doQuery(inst) {
 	const chainID = 
 	console.log('chainID', chainID);
 }
+
+async function doDBQuery(cfg) {
+	const { Client } = require("pg")
+	const client = new Client({
+		user: cfg.user,
+		host: cfg.host,
+		database: cfg.database,
+		password: cfg.password,
+		port: cfg.port
+	})
+	await client.connect()
+	const res = await client.query({
+		'text': 'select * from state.l2block',
+		'rowmode': 'array'
+	});
+	await client.end()
+	console.log(res.rows);
+}
+
+
 /*
   IERC20Upgradeable public immutable matic;
     IVerifierRollup public immutable rollupVerifier;
