@@ -67,14 +67,22 @@ async function doContractQuery(inst) {
 		'forceBatchTimeout'
 	];
 
+    call_results = {};
+
 	for (const fn of fncs) {
 		const val = await inst.functions[fn]();
-		console.log(fn, val);
+        call_results[fn] = val;
 	}
-	return;
 
-	const chainID = 
-	console.log('chainID', chainID);
+    console.log(call_results);
+
+    const first_val = await inst.functions.batchNumToStateRoot(0);
+    console.log('first batchNumToStateRoot', 0, first_val);
+    const last_batch = call_results['lastBatchSequenced'].toString()
+    const last_val = await inst.functions.batchNumToStateRoot(parseInt(last_batch));
+    console.log('last batchNumToStateRoot', last_batch, last_val);
+
+	return;
 }
 
 async function doDBQuery(cfg) {
