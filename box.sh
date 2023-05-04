@@ -8,7 +8,7 @@ su - ed
 
 git config --global user.email "ed@socialminds.jp"
 git config --global user.name "Edmund Edgar"
-
+cp ./.vimrc /home/ed/.vimrc
 
 # install various common packages used for docker and other stuff
 sudo apt install apt-transport-https ca-certificates curl software-properties-common make unzip gcc net-tools
