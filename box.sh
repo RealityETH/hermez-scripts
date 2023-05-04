@@ -8,6 +8,7 @@ su - ed
 
 git config --global user.email "ed@socialminds.jp"
 git config --global user.name "Edmund Edgar"
+git config pull.rebase false 
 cp ./.vimrc /home/ed/.vimrc
 
 # install various common packages used for docker and other stuff
