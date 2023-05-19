@@ -1,5 +1,7 @@
 #!/bin/bash -x
 
+# cat ./add_to_bash_rc.sh >> ~/.bashrc
+
 #ZKEVM_NET=mainnet
 ZKEVM_NET=testnet
 ZKEVM_DIR=/var/lib/hermez
