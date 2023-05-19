@@ -68,3 +68,16 @@ Backed up geth state to geth-deployed
 
 What happens if we deploy the deployer twice? Probably can only happen once, the second time should be an invalid transaction (?) because of the way the keyless deploy works
 
+
+
+
+
+Tried running testnet stuff using production instructions
+Blew up on database permissions settings
+Found what looked like a fix in the polygon develop branch, not yet released
+Tried to make our own relase using what looked like their build script
+Docker-compose wouldn't start because it had missing tags that should have been in the build
+Put them in manually, making the docker-compose we backed up in hermez-scripts
+DB script started ok but then the zkevm node failed because it had a network script that it wasn't supposed to
+
+
